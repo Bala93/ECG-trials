@@ -5,20 +5,39 @@ Created on Sat Dec 16 16:19:17 2017
 
 @author: htic
 """
+from torch.autograd import Variable
+import torch
+from torch.nn import nn
 
 from arch import ECG
-import torch
 from dataRead import get_data
-from torch.autograd import Variable
 
+
+#cuda_available = 
+EPOCH = 10
+LR = 0.01
 dloader = get_data()
 ecg = ECG()
 
-for x,y in dloader:
-    x = torch.unsqueeze(x,1)
-    print x.size()
-    x = Variable(x)
-    y = ecg(x)
-    print y
-    print y.size()
+
+
+optimizer = torch.optim.Adam(ecg.parameters(),lr = LR)
+loss_func = nn.CrossEntropyLoss()
+
+for epoch in EPOCH:
+
+    for step,(x,y) in enumerate(dloader):
+        x = torch.unsqueeze(x,1)
+        x = Variable(x)
+        y_predicted = ecg(x)
+        loss = loss_func(y_predicted,y)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        if step % 1000 == 0:
+            
+        
+    
+        break
     break

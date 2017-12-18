@@ -9,6 +9,7 @@ Created on Sat Dec 16 16:14:41 2017
 import torch.nn as nn
 
 batch_size = 1
+no_classes = 3
 
 class ECG(nn.Module):
     
@@ -39,7 +40,7 @@ class ECG(nn.Module):
         self.fc1 = nn.Linear(11520,5000)
         self.fc2 = nn.Linear(5000,1000)
         self.fc3 = nn.Linear(1000,100)
-        self.fc4 = nn.Linear(100,2)
+        self.fc4 = nn.Linear(100,no_classes)
         
 
     def forward(self,x):

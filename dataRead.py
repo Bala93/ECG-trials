@@ -17,6 +17,8 @@ def get_data():
     dataset_npy = np.load(path)
     dataset_x  = dataset_npy[:,:360].astype(np.float32)
     dataset_y  = dataset_npy[:,360:].astype(np.int)
+    count = np.unique(dataset_y,return_counts = True)
+    print count
     
     in_data     = torch.FloatTensor(dataset_x)
     out_labels  = torch.IntTensor(dataset_y)
@@ -30,4 +32,5 @@ def get_data():
 #    print x.size(),y.size()
 #    print x
 #    break
-    
+
+get_data()
