@@ -9,7 +9,7 @@ Created on Sat Dec 16 16:14:41 2017
 import torch.nn as nn
 
 batch_size = 1
-no_classes = 3
+no_classes = 4
 
 class ECG(nn.Module):
     

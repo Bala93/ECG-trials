@@ -29,10 +29,10 @@ def get_data():
     test_y     = test_npy[:,feature_length:].astype(np.int)
 
     train_x_torch = torch.FloatTensor(train_x)
-    train_y_torch = torch.IntTensor(train_y)
+    train_y_torch = torch.LongTensor(train_y)
 
     test_x_torch = torch.FloatTensor(test_x)
-    test_y_torch = torch.IntTensor(test_y)
+    test_y_torch = torch.LongTensor(test_y)
     
     
     train_dataset = TensorDataset(train_x_torch,train_y_torch)
